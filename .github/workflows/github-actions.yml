@@ -1,0 +1,54 @@
+name: Run Jest Tests and Push Docker Image
+
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+
+      - name: Clear npm cache
+        run: npm cache clean --force
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Fix permissions
+        run: chmod +x node_modules/.bin/*
+
+      - name: Check Jest installation
+        run: which jest || echo "Jest not found"
+
+      - name: Run Jest tests
+        run: npm test
+
+      - name: Check job status
+        if: always()
+        run: echo "[INFO] Job completed."
+
+  build-and-push-docker:
+    needs: run-tests  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t guilhermesos/calculadora:latest .
+
+      - name: Push Docker image
+        run: docker push guilhermesos/calculadora:latest

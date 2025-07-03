@@ -1,0 +1,479 @@
+/* Reset básico para remover margens e paddings padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Estilos Gerais do Corpo e Container (Mobile-First) --- */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e0e0e0;
+    display: flex;
+    flex-direction: column; /* Conteúdo em coluna por padrão (celular) */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo por padrão */
+    align-items: center; /* Centraliza horizontalmente o conteúdo do body */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 15px; /* Adiciona padding geral para não grudar nas bordas do celular */
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+}
+
+/* Estilo do container principal (usado em todas as páginas) */
+.container {
+    background-color: #3a3a3a;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Ocupa a largura total disponível no pai */
+    max-width: 350px; /* Largura padrão para telas menores (calculadoras e login) */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo para o título principal */
+h1 {
+    font-size: 28px; /* Ajustado para mobile */
+    color: #f0f0f0;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* Estilo do parágrafo na página inicial */
+p {
+    font-size: 1em; /* Ajustado para mobile */
+    color: #ccc;
+    margin-bottom: 20px; /* Ajustado */
+    line-height: 1.4;
+}
+
+/* --- Estilos para as Telas de Operação da Calculadora (Mobile-First) --- */
+
+/* Display da Calculadora */
+.display {
+    background-color: #222;
+    color: #0f0;
+    padding: 15px 10px; /* Ajustado para mobile */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em; /* Ajustado para mobile */
+    gap: 8px; /* Ajustado */
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+
+.display input[type="number"] {
+    background: none;
+    border: none;
+    color: #0f0;
+    font-size: 1em;
+    width: 48%; /* Ajustado para mobile */
+    text-align: center;
+    padding: 5px 0;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.display input[type="number"]::-webkit-outer-spin-button,
+.display input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.operator-symbol {
+    font-weight: bold;
+    color: #ff9500;
+    font-size: 1.1em; /* Ajustado */
+}
+
+/* Display de Resultado */
+.result-display {
+    background-color: #444;
+    color: #0f0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.8em; /* Ajustado para mobile */
+    text-align: center;
+    min-height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-all;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+}
+
+/* --- Estilos para os Botões (Calcular/Limpar e Voltar nas Calculadoras de Operação) --- */
+.buttons {
+    display: flex;
+    flex-wrap: nowrap; /* Impede quebra de linha por padrão */
+    gap: 10px; /* Ajustado para mobile */
+    justify-content: center;
+}
+
+.buttons button,
+.buttons .back-button {
+    color: white;
+    border: none;
+    padding: 12px 8px; /* Reduzido para caber melhor 3 botões */
+    font-size: 1em; /* Reduzido para caber melhor 3 botões */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Sombra menor */
+    box-sizing: border-box;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 1; /* Faz com que todos os 3 botões tentem ocupar o mesmo espaço */
+    max-width: calc(33.33% - 7px); /* Ajustado para o novo gap */
+    min-width: 70px; /* Ajustado para mobile */
+}
+
+.buttons button:hover,
+.buttons .back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.buttons button:active,
+.buttons .back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos específicos para os botões Calcular e Limpar */
+.buttons button {
+    background-color: #007bff;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo específico para o botão "Limpar" */
+.buttons button:last-of-type {
+    background-color: #dc3545;
+}
+
+.buttons button:last-of-type:hover {
+    background-color: #c82333;
+}
+
+/* Estilo específico para o botão "Voltar" */
+.buttons .back-button {
+    background-color: #6c757d;
+}
+
+.buttons .back-button:hover {
+    background-color: #5a6268;
+}
+
+/* ---------------------------------------------------- */
+/* --- Estilos para a Página Inicial de Seleção de Operação (Mobile-First) --- */
+/* ---------------------------------------------------- */
+/* Largura específica do container para a página inicial */
+.container:has(.options) {
+    max-width: 320px; /* Mais adequado para celulares, os botões quebram naturalmente */
+}
+
+/* Estilo para o container dos botões de operação na página inicial */
+.options {
+    display: grid;
+    /* Em telas pequenas, os botões ocuparão a largura total (1fr) */
+    grid-template-columns: 1fr;
+    gap: 15px; /* Ajustado para mobile */
+    margin-top: 20px;
+}
+
+/* Estilo base para os links que funcionam como botões na página inicial */
+.options .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px; /* Ajustado para mobile */
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 1.2em; /* Ajustado para mobile */
+    font-weight: bold;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Sombra ajustada */
+}
+
+.options .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.4);
+}
+
+.options .button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    background-color: #444;
+}
+
+/* Cores específicas para cada botão de operação na página inicial */
+.options .button-plus { background-color: #28a745; }
+.options .button-plus:hover { background-color: #218838; }
+.options .button-minus { background-color: #dc3545; }
+.options .button-minus:hover { background-color: #c82333; }
+.options .button-times { background-color: #ffc107; color: #333; }
+.options .button-times:hover { background-color: #e0a800; }
+.options .button-divide { background-color: #007bff; }
+.options .button-divide:hover { background-color: #0056b3; }
+
+
+/* ---------------------------------------------------- */
+/* --- Estilos para a Tela de Login (Mobile-First) --- */
+/* ---------------------------------------------------- */
+/* Largura específica do container na tela de login */
+.container:has(#loginForm) {
+    max-width: 320px; /* Adequado para login em celular */
+}
+
+/* Estilo para os grupos de formulário (label + input) */
+.form-group {
+    margin-bottom: 18px; /* Ajustado para mobile */
+    text-align: left;
+}
+
+/* Estilo dos rótulos (labels) */
+.form-group label {
+    display: block;
+    font-size: 1em; /* Ajustado */
+    color: #f0f0f0;
+    margin-bottom: 6px; /* Ajustado */
+    font-weight: bold;
+}
+
+/* Estilo dos campos de entrada (input text e password) */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px; /* Ajustado */
+    font-size: 1em; /* Ajustado */
+    border: 1px solid #666;
+    border-radius: 6px;
+    background-color: #444;
+    color: #e0e0e0;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+/* Estilo do link "Recuperar a senha" */
+.forgot-password-link {
+    display: block;
+    text-align: right;
+    font-size: 0.9em; /* Ajustado */
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 6px; /* Ajustado */
+    transition: color 0.2s ease;
+}
+
+.forgot-password-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Estilo do botão de login */
+.login-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px; /* Ajustado */
+    font-size: 1.1em; /* Ajustado */
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.login-button:active {
+    background-color: #1e7e34;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para o link "Voltar" na página de login */
+.return-home {
+    margin-top: 25px; /* Ajustado */
+    text-align: center;
+}
+
+.return-home .button {
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    font-size: 0.9em;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.return-home .button:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.return-home .button:active {
+    background-color: #495057;
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Estilos do Rodapé --- */
+footer {
+    margin-top: 25px; /* Ajustado */
+    font-size: 0.85em; /* Ajustado */
+    color: #888;
+}
+
+/* ==================================================== */
+/* --- MEDIA QUERIES para Telas Maiores (Desktop) --- */
+/* ==================================================== */
+
+@media (min-width: 768px) {
+    body {
+        justify-content: center; /* Centraliza verticalmente em telas maiores */
+        padding: 40px 20px; /* Mais padding em desktop */
+    }
+
+    .container {
+        padding: 35px; /* Mais padding interno para desktop */
+        gap: 30px; /* Mais espaçamento interno */
+    }
+
+    h1 {
+        font-size: 38px; /* Tamanho maior para desktop */
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 1.1em; /* Tamanho maior para desktop */
+        margin-bottom: 30px;
+    }
+
+    /* --- Ajustes para Calculadoras Individuais em Desktop --- */
+    .container:not(:has(.options)):not(:has(#loginForm)) {
+        max-width: 400px; /* Largura ideal para calculadora em desktop */
+    }
+
+    .display {
+        padding: 20px 15px;
+        font-size: 2.5em; /* Tamanho maior para desktop */
+        gap: 10px;
+    }
+
+    .display input[type="number"] {
+        font-size: 1.1em;
+        width: 45%;
+    }
+
+    .operator-symbol {
+        font-size: 1.2em;
+    }
+
+    .result-display {
+        padding: 20px;
+        font-size: 2.5em; /* Tamanho maior para desktop */
+    }
+
+    .buttons {
+        gap: 20px; /* Mais espaço entre os botões em desktop */
+    }
+
+    .buttons button,
+    .buttons .back-button {
+        padding: 15px 15px; /* Padding maior para desktop */
+        font-size: 1.2em; /* Fonte maior para desktop */
+        max-width: calc(33.33% - 13.33px); /* Ajuste com novo gap (20px) */
+        min-width: 100px;
+    }
+
+    /* --- Ajustes para a Página Inicial de Seleção em Desktop --- */
+    .container:has(.options) {
+        max-width: 480px; /* Largura ideal para seleção em desktop (2 colunas) */
+    }
+
+    .options {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para desktop */
+        gap: 25px; /* Mais espaçamento entre botões */
+    }
+
+    .options .button {
+        min-height: 90px; /* Altura maior para desktop */
+        font-size: 1.5em; /* Fonte maior para desktop */
+    }
+
+    /* --- Ajustes para a Tela de Login em Desktop --- */
+    .container:has(#loginForm) {
+        max-width: 450px; /* Largura ideal para login em desktop */
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        font-size: 1.1em;
+        margin-bottom: 8px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .forgot-password-link {
+        font-size: 1em;
+        margin-top: 8px;
+    }
+
+    .login-button {
+        padding: 15px 25px;
+        font-size: 1.2em;
+    }
+
+    .return-home {
+        margin-top: 30px;
+    }
+
+    .return-home .button {
+        font-size: 1em;
+    }
+
+    footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+    }
+}

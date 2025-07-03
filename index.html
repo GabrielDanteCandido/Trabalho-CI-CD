@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login para Calculadora</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login para Calculadora</h1>
+        <form id="loginForm" onsubmit="return validarLogin(event)">
+            <div class="form-group">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Digite seu nome de usuário" required>
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" maxlength="8" minlength="2" placeholder="Insira sua senha" required>
+                <a href="#" class="forgot-password-link">Recuperar a senha</a>
+            </div>
+            <button type="submit" class="login-button">Entrar</button>
+        </form>
+
+        <div class="return-home">
+            <a href="index.html" class="button">Voltar para a seleção de operações</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Todos os direitos reservados.</p>
+        </footer>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

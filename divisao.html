@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Divisão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Divisão</h1>
+        <div class="display">
+            <input type="number" id="valor1" placeholder="0">
+            <span class="operator-symbol">÷</span> 
+            <input type="number" id="valor2" placeholder="0">
+        </div>
+        <div class="buttons">
+            <button onclick="calcularDivisao()">Calcular</button>
+            <button onclick="limpar()">Limpar</button>
+            <a href="calculadora.html" class="button back-button">Voltar</a>
+        </div>
+        <div class="result-display" id="resultado">Resultado: 0</div>
+    </div>
+    <script src="calcular.js"></script>
+</body>
+</html>
