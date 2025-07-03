@@ -13,6 +13,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
+          node-version: '18' # <--- This line was missing
 
       - name: Clear npm cache
         run: npm cache clean --force
@@ -34,7 +35,7 @@ jobs:
         run: echo "[INFO] Job completed."
 
   build-and-push-docker:
-    needs: run-tests  
+    needs: run-tests
     runs-on: ubuntu-latest
 
     steps:
