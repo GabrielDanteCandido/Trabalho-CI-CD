@@ -49,7 +49,7 @@ jobs:
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t guilhermesos/calculadora:latest .
+        run: docker build -t gabrieldante/meu-app-calculadora:latest .
 
       - name: Push Docker image
-        run: docker push guilhermesos/calculadora:latest
+        run: docker push gabrieldante/meu-app-calculadora:latest
